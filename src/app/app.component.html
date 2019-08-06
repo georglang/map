@@ -1,0 +1,46 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <div id="map">
+
+  </div>
+  <br>
+  <br>
+  <br>
+
+  <div id="add-customer-form">
+    <form [formGroup]="customerForm" #addCustomerForm="ngForm" (ngSubmit)="onSubmit(addCustomerForm.value)">
+      <mat-form-field>
+        <input matInput set control name formControlName="companyName" placeholder="Firmenname" class="form-control form-control-sm"
+          type="text" />
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput set control name formControlName="street" placeholder="Straße" class="form-control form-control-sm" type="text"
+        />
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput set control name formControlName="place" placeholder="Ort" class="form-control form-control-sm" type="text"
+        />
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput set control name formControlName="zipCode" placeholder="Postleitzahl" class="form-control form-control-sm" type="text"
+        />
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+          <input matInput set control name formControlName="contactPerson" placeholder="Ansprechpartner" class="form-control form-control-sm" type="text"
+          />
+        </mat-form-field>
+        <br>
+      <mat-form-field>
+          <input matInput set control name formControlName="phoneNumber" placeholder="Tel." class="form-control form-control-sm" type="text"
+          />
+        </mat-form-field>
+        <br>
+    </form>
+<br>
+    <button mat-stroked-button type="submit" (click)="addCustomerForm.ngSubmit.emit()">Kunde anlegen</button>
+
+  </div>
