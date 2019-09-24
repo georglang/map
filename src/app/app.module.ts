@@ -6,8 +6,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
+import { MapComponent } from './map/map.component';
 
 // Angular Material
+import { SearchBoxComponent } from './search-box/search-box.component';
 import {
   MatButtonModule,
   MatIconModule,
@@ -22,11 +24,12 @@ import {
   MatTabsModule,
   MatTableModule,
   MatDialogModule,
-  MatRadioModule
+  MatRadioModule,
+  MatAutocompleteModule
 } from '@angular/material';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [AppComponent, HeaderComponent, MapComponent, SearchBoxComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -46,7 +49,8 @@ import {
     MatTabsModule,
     MatTableModule,
     MatDialogModule,
-    MatRadioModule
+    MatRadioModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]
