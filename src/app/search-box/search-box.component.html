@@ -1,0 +1,33 @@
+<div id="boxcontainer" class="searchbox searchbox-shadow">
+  <div class="searchbox-menu-container">
+    <button
+      aria-label="Menu"
+      id="searchbox-menubutton"
+      class="searchbox-menubutton"
+      (click)="toggleSidebar()"
+    ></button>
+    <span aria-hidden="true" style="display:none">Menu</span>
+  </div>
+  <div>
+    <!-- <input id="searchboxinput" type="text" style="position: relative;" /> -->
+
+    <form>
+      <mat-form-field id="search-input">
+        <input matInput [matAutocomplete]="auto" [formControl]="searchInput" id="searchboxinput" />
+        <mat-autocomplete #auto="matAutocomplete" id="autocomplete-panel">
+          <mat-option
+            *ngFor="let location of locations"
+            [value]="location.label"
+            (click)="setLocation(location)"
+          >
+            <span>{{ location.label }}</span> |
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="searchbox-searchbutton-container">
+    <button aria-label="search" id="searchbox-searchbutton" class="searchbox-searchbutton"></button>
+    <span aria-hidden="true" style="display:none;">search</span>
+  </div>
+</div>
