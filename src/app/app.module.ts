@@ -20,7 +20,8 @@ import {
   MatToolbarModule,
   MatTabsModule,
   MatTableModule,
-  MatDialogModule
+  MatDialogModule,
+  MatRadioModule,
 } from '@angular/material';
 
 @NgModule({
@@ -46,6 +47,7 @@ import {
     MatTabsModule,
     MatTableModule,
     MatDialogModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

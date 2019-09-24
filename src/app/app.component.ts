@@ -13,6 +13,8 @@ export class AppComponent implements OnInit {
   map;
   marker;
   public customerForm: FormGroup;
+  favoriteSeason: string;
+  seasons: string[] = ['Kontakt besteht', 'Anfrage gestellt', 'Kein Kontakt'];
 
 
   constructor(
@@ -35,11 +37,54 @@ export class AppComponent implements OnInit {
       phoneNumber: ['', Validators.required]
     });
 
-    this.map = L.map('map').setView([47.6413744, 10.8275033], 13);
+    this.createMap();
+    // this.setSearchControl();
+    var searchControl = new L.Control.Search({
+      propertyName: 'Name',
+      marker: false,
+      moveToLocation: function (latlng) {
+        this.map.setView(latlng, 12); // set the zoom
+      }
+    });
+  }
 
+  public createMap() {
+    this.map = L.map('map').setView([47.6413744, 10.8275033], 13);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
+  }
+
+  public setSearchControl() {
+    const mobileOpts = {
+      url: 'http://nominatim.openstreetmap.org/search?format=json&q={s}',
+      jsonpParam: 'json_callback',
+      formatData: this.formatJSON,
+      textPlaceholder: 'Color...',
+      autoType: false,
+      tipAutoSubmit: true,
+      autoCollapse: false,
+      autoCollapseTime: 20000,
+      delayType: 800,	//with mobile device typing is more slow
+      marker: {
+        icon: true
+      }
+    };
+
+    var searchLayer = L.layerGroup().addTo(this.map);
+    this.map.addControl(new L.Control.Search({ layer: searchLayer }));
+  }
+
+  public formatJSON(rawjson) {	//callback that remap fields name
+    var json = {},
+      key, loc, disp = [];
+    for (var i in rawjson) {
+      disp = rawjson[i].display_name.split(',');
+      key = disp[0] + ', ' + disp[1];
+      loc = L.latLng(rawjson[i].lat, rawjson[i].lon);
+      json[key] = loc;	//key,value format
+    }
+    return json;
   }
 
   public setMarker(form) {
@@ -60,7 +105,7 @@ export class AppComponent implements OnInit {
     this.marker = L.marker([lat, lng], { icon: greenIcon }).addTo(this.map);
     this.marker.bindPopup(
       `
-      <div><strong>${form.companyName}<strong></div
+      <div><strong>${form.companyName}</strong></div
       <div>${form.street}</div>
       <div>${form.zipCode} ${form.place}</div>
       <br>

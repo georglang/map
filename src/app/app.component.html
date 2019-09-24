@@ -25,22 +25,33 @@
       </mat-form-field>
       <br>
       <mat-form-field>
-        <input matInput set control name formControlName="zipCode" placeholder="Postleitzahl" class="form-control form-control-sm" type="text"
-        />
+        <input matInput set control name formControlName="zipCode" placeholder="Postleitzahl" class="form-control form-control-sm"
+          type="text" />
       </mat-form-field>
       <br>
       <mat-form-field>
-          <input matInput set control name formControlName="contactPerson" placeholder="Ansprechpartner" class="form-control form-control-sm" type="text"
-          />
-        </mat-form-field>
-        <br>
+        <input matInput set control name formControlName="contactPerson" placeholder="Ansprechpartner" class="form-control form-control-sm"
+          type="text" />
+      </mat-form-field>
+      <br>
       <mat-form-field>
-          <input matInput set control name formControlName="phoneNumber" placeholder="Tel." class="form-control form-control-sm" type="text"
-          />
-        </mat-form-field>
-        <br>
+        <input matInput set control name formControlName="phoneNumber" placeholder="Tel." class="form-control form-control-sm" type="text"
+        />
+      </mat-form-field>
+      <br>
+
     </form>
-<br>
+    <br>
+    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="favoriteSeason">
+      <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+        {{season}}
+      </mat-radio-button>
+      <br>
+    </mat-radio-group>
+    <br>
+    <br>
+
+
     <button mat-stroked-button type="submit" (click)="addCustomerForm.ngSubmit.emit()">Kunde anlegen</button>
 
   </div>
